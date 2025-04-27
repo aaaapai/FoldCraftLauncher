@@ -2,15 +2,6 @@ name: Android CI
 
 on:
   pull_request:  
-  push:
-    branches-ignore:
-      - ''
-    tags:
-      - '*'
-    paths-ignore:
-      - '.github/workflows/**'
-      - '**.md'
-      - 'version_map.json'
   workflow_dispatch:
 
 jobs:
