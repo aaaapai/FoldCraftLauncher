@@ -27,10 +27,10 @@ jobs:
       - name: Build apk
         run: |
           chmod +x gradlew
-          ./gradlew assemblefordebug -Darch=arm64
+          ./gradlew assemblerelease -Darch=arm64
 
       - name: Upload apk
         uses: actions/upload-artifact@main
         with:
           name: app-debug-arm64
-          path: FCL/build/outputs/apk/fordebug/*
+          path: FCL/build/outputs/apk/release/*
