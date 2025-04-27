@@ -24,10 +24,10 @@ android {
 
     signingConfigs {
         create("FCLKey") {
-            storeFile = file("../key-store.jks")
-            storePassword = pwd
+            storeFile = file("../debug-key.jks")
+            storePassword = FCL-Debug
             keyAlias = "FCL-Key"
-            keyPassword = pwd
+            keyPassword = FCL-Debug
         }
         create("FCLDebugKey") {
             storeFile = file("../debug-key.jks")
@@ -78,17 +78,7 @@ android {
                         task.doLast {
                             val arch = System.getProperty("arch", "all")
                             val assetsDir = task.outputDir.get().asFile
-                            val jreList = listOf("jre8", "jre11", "jre17", "jre21")
                             println("arch:$arch")
-                            jreList.forEach { jre ->
-                                val runtimeDir = "$assetsDir/app_runtime/java/$jre"
-                                println("runtimeDir:$runtimeDir")
-                                File(runtimeDir).listFiles().forEach {
-                                    if (arch != "all" && it.name != "version" && !it.name.contains("universal") && it.name != "bin-${arch}.tar.xz") {
-                                        println("delete:${it} : ${it.delete()}")
-                                    }
-                                }
-                            }
                         }
                     }
                 }
@@ -97,8 +87,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     packaging {
@@ -109,7 +99,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
 
     buildFeatures {
@@ -142,14 +132,14 @@ dependencies {
     implementation(project(":FCLauncher"))
     implementation("com.getkeepsafe.taptargetview:taptargetview:1.14.0")
     implementation("org.nanohttpd:nanohttpd:2.3.1")
-    implementation("org.apache.commons:commons-compress:1.26.0")
-    implementation("org.tukaani:xz:1.9")
-    implementation("com.github.steveice10:opennbt:1.5")
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("org.apache.commons:commons-compress:1.27.1")
+    implementation("org.tukaani:xz:1.10")
+    implementation("com.github.steveice10:opennbt:1.6")
+    implementation("com.google.code.gson:gson:2.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.google.android.material:material:1.13.0-alpha13")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation("com.github.bumptech.glide:glide:5.0.0-rc01")
     implementation("top.fifthlight.touchcontroller:proxy-client-android:0.0.2")
     implementation("androidx.palette:palette-ktx:1.0.0")
     implementation("com.github.Mathias-Boulay:android_gamepad_remapper:2.0.3")
