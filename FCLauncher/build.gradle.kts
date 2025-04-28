@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
         }
         create("fordebug") {
             initWith(getByName("debug"))
@@ -25,8 +25,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     externalNativeBuild {
@@ -35,19 +35,19 @@ android {
         }
     }
 
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "28.1.13356709"
 
     buildFeatures {
         prefab = true
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
 }
 
 dependencies {
     implementation("com.bytedance:bytehook:1.0.10")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
+    implementation("com.google.android.material:material:1.13.0-alpha13")
 }
