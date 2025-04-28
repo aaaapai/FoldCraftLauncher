@@ -11,6 +11,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven("https://jitpack.io")
+        maven("https://repo.codemc.io/repository/maven-public")
     }
 }
 rootProject.name = "Fold Craft Launcher"
