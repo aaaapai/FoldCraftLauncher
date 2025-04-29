@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
         }
         create("fordebug") {
             initWith(getByName("debug"))
