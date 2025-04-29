@@ -94,7 +94,8 @@ class SplashActivity : FCLActivity() {
         Task.runAsync {
             initState()
         }.whenComplete(Schedulers.androidUIThread()) {
-            if (lwjgl && cacio && cacio11 && cacio17 && java8 && java11 && java17 && java21 && jna) {
+            if (lwjgl && cacio && cacio11 && cacio17 
+                && jna) {
                 enterLauncher()
             } else {
                 start()
