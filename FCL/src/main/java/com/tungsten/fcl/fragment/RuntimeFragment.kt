@@ -103,11 +103,6 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                 Thread {
                     try {
                         RuntimeUtils.install(context, FCLPath.LWJGL_DIR, "app_runtime/lwjgl")
-                        RuntimeUtils.install(
-                            context,
-                            FCLPath.LWJGL_DIR + "-boat",
-                            "app_runtime/lwjgl-boat"
-                        )
                         lwjgl = true
                     } catch (e: IOException) {
                         e.printStackTrace()
@@ -181,94 +176,6 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                     activity?.runOnUiThread {
                         cacio17State.visibility = View.VISIBLE
                         cacio17Progress.visibility = View.GONE
-                        refreshDrawables()
-                        check()
-                    }
-                }.start()
-            }
-            if (!java8) {
-                java8State.visibility = View.GONE
-                java8Progress.visibility = View.VISIBLE
-                Thread {
-                    try {
-                        RuntimeUtils.installJava(
-                            context,
-                            FCLPath.JAVA_8_PATH,
-                            "app_runtime/java/jre8"
-                        )
-                        java8 = true
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                    activity?.runOnUiThread {
-                        java8State.visibility = View.VISIBLE
-                        java8Progress.visibility = View.GONE
-                        refreshDrawables()
-                        check()
-                    }
-                }.start()
-            }
-            if (!java11) {
-                java11State.visibility = View.GONE
-                java11Progress.visibility = View.VISIBLE
-                Thread {
-                    try {
-                        RuntimeUtils.installJava(
-                            context,
-                            FCLPath.JAVA_11_PATH,
-                            "app_runtime/java/jre11"
-                        )
-                        java11 = true
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                    activity?.runOnUiThread {
-                        java11State.visibility = View.VISIBLE
-                        java11Progress.visibility = View.GONE
-                        refreshDrawables()
-                        check()
-                    }
-                }.start()
-            }
-            if (!java17) {
-                java17State.visibility = View.GONE
-                java17Progress.visibility = View.VISIBLE
-                Thread {
-                    try {
-                        RuntimeUtils.installJava(
-                            context,
-                            FCLPath.JAVA_17_PATH,
-                            "app_runtime/java/jre17"
-                        )
-                        java17 = true
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                    activity?.runOnUiThread {
-                        java17State.visibility = View.VISIBLE
-                        java17Progress.visibility = View.GONE
-                        refreshDrawables()
-                        check()
-                    }
-                }.start()
-            }
-            if (!java21) {
-                java21State.visibility = View.GONE
-                java21Progress.visibility = View.VISIBLE
-                Thread {
-                    try {
-                        RuntimeUtils.installJava(
-                            context,
-                            FCLPath.JAVA_21_PATH,
-                            "app_runtime/java/jre21"
-                        )
-                        java21 = true
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                    activity?.runOnUiThread {
-                        java21State.visibility = View.VISIBLE
-                        java21Progress.visibility = View.GONE
                         refreshDrawables()
                         check()
                     }
