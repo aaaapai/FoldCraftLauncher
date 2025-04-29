@@ -9,6 +9,9 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+        ndk {
+            abiFilters.addAll(listOf("arm64-v8a"))
+       }
     }
 
     lint {
@@ -32,7 +35,6 @@ android {
     externalNativeBuild {
         ndkBuild {
             path = file("src/main/jni/Android.mk")
-            abiFilters.addAll(listOf("arm64-v8a"))
         }
     }
 
