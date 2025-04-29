@@ -32,7 +32,7 @@ android {
     externalNativeBuild {
         ndkBuild {
             path = file("src/main/jni/Android.mk")
-            abiFilters = "arm64-v8a"
+            abiFilters.addAll(listOf("arm64-v8a"))
         }
     }
 
