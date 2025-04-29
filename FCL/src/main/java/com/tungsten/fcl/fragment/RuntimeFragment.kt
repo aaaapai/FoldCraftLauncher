@@ -21,10 +21,6 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
     var cacio: Boolean = false
     var cacio11: Boolean = false
     var cacio17: Boolean = false
-    var java8: Boolean = false
-    var java11: Boolean = false
-    var java17: Boolean = false
-    var java21: Boolean = false
     var jna: Boolean = false
 
     override fun onCreateView(
@@ -50,10 +46,6 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
         cacio = (activity as SplashActivity).cacio
         cacio11 = (activity as SplashActivity).cacio11
         cacio17 = (activity as SplashActivity).cacio17
-        java8 = (activity as SplashActivity).java8
-        java11 = (activity as SplashActivity).java11
-        java17 = (activity as SplashActivity).java17
-        java21 = (activity as SplashActivity).java21
         jna = (activity as SplashActivity).jna
     }
 
@@ -72,17 +64,13 @@ class RuntimeFragment : FCLFragment(), View.OnClickListener {
                 cacioState.setBackgroundDrawable(if (cacio) stateDone else stateUpdate)
                 cacio11State.setBackgroundDrawable(if (cacio11) stateDone else stateUpdate)
                 cacio17State.setBackgroundDrawable(if (cacio17) stateDone else stateUpdate)
-                java8State.setBackgroundDrawable(if (java8) stateDone else stateUpdate)
-                java11State.setBackgroundDrawable(if (java11) stateDone else stateUpdate)
-                java17State.setBackgroundDrawable(if (java17) stateDone else stateUpdate)
-                java21State.setBackgroundDrawable(if (java21) stateDone else stateUpdate)
                 jnaState.setBackgroundDrawable(if (jna) stateDone else stateUpdate)
             }
         }
     }
 
     private val isLatest: Boolean
-        get() = lwjgl && cacio && cacio11 && cacio17 && java8 && java11 && java17 && java21 && jna
+        get() = lwjgl && cacio && cacio11 && cacio17 && jna
 
     private fun check() {
         if (isLatest) {
