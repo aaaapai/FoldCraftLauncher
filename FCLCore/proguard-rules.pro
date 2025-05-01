@@ -85,3 +85,6 @@
 
 -keep class org.lwjgl.glfw.** { *; }
 -keep class com.oracle.dalvik.** { *; }
+-keep class com.tungsten.fclcore.download.ProcessService.startProcess { *; }
+-keep classcom.tungsten.fclauncher.bridge.FCLBridgeCallback { *; }
+-keep class com.tungsten.fclcore.download.ProcessService.onStartCommand { *; }
