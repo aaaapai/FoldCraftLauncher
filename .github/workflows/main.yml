@@ -31,5 +31,4 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: app-debug-arm64
-          path: /home/runner/work/FoldCraftLauncher/FoldCraftLauncher/FCLCore/build/outputs/mapping/release/missing_rules.txt
-          #FCL/build/outputs/apk/release/*
+          path: FCL/build/outputs/apk/release/*
