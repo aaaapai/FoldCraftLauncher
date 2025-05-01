@@ -65,7 +65,7 @@ public class LibFilter {
         for (Library library : libraries) {
             if (!library.getName().contains("org.lwjgl") && !library.getName().contains("jinput-platform") && !library.getName().contains("twitch-platform")) {
                 String[] version = library.getName().split(":")[2].split("\\.");
-                if (library.getArtifactId().equals("asm-all") {
+                if (library.getArtifactId().equals("asm-all")) {
                     newLibraries.add(ASM_ALL_5_2);
                 } else if (library.getName().startsWith("net.java.dev.jna:jna:")) {
                         newLibraries.add(JNA_5_17);
