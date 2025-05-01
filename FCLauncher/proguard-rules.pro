@@ -84,4 +84,4 @@
 
 
 -keep class org.lwjgl.glfw.** { *; }
--keep class com/oracle/dalvik.** { *; }
+-keep class com.oracle.dalvik.** { *; }
