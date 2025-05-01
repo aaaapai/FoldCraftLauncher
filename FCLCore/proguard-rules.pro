@@ -97,6 +97,8 @@
 -keep class com.tungsten.** { *; }
 -keep class java.com.sun.nio.zipfs.** { *; }
 -keep class com.sun.nio.zipfs.ZipFileSystemProvider { *; }
+-keep class com.mio.** { *; }
 
 -dontwarn java.lang.**
--dontwarn com.sun.nio.zipfs.**
+-dontwarn java.com.sun.nio.zipfs.**
+-dontwarn com.mio.**
