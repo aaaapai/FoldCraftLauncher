@@ -81,8 +81,18 @@
     public <init>(android.content.Context, android.util.AttributeSet, int);
     public void set*(...);
 }
+-keep public class * implements java.io.Serializable {*;}
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+-keep,allowobfuscation class * implements androidx.viewbinding.ViewBinding { *; }
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding { *; }
+-dontwarn android.support.**
 
 
 -keep class org.lwjgl.glfw.** { *; }
 -keep class com.oracle.dalvik.** { *; }
 -keep class com.tungsten.fclauncher.** { *; }
+-keep class java.lang.invoke.StringConcatFactory { *; }
+
+-dontwarn java.lang.**
