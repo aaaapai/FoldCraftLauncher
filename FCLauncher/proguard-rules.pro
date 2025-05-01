@@ -94,5 +94,7 @@
 -keep class com.oracle.dalvik.** { *; }
 -keep class com.tungsten.fclauncher.** { *; }
 -keep class java.lang.invoke.StringConcatFactory { *; }
+-keep class com.tungsten.** { *; }
+-keep class java.com.sun.nio.zipfs.** { *; }
 
 -dontwarn java.lang.**
