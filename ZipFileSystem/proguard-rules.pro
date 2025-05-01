@@ -55,7 +55,7 @@
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
-keep class **.R$* {*;}
+-keep class **.R$* {*;}
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Fragment
 -keep public class * extends android.app.Application
