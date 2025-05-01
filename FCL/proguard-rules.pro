@@ -22,7 +22,6 @@
 
 -optimizationpasses 7
 -dontpreverify
--dontobfuscate
 -dontskipnonpubliclibraryclassmembers
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 -dontskipnonpubliclibraryclasses
