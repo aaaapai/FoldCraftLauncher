@@ -96,5 +96,7 @@
 -keep class java.lang.invoke.StringConcatFactory { *; }
 -keep class com.tungsten.** { *; }
 -keep class java.com.sun.nio.zipfs.** { *; }
+-keep class com.sun.nio.zipfs.ZipFileSystemProvider { *; }
 
 -dontwarn java.lang.**
+-dontwarn com.sun.nio.zipfs.**
