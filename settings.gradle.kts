@@ -12,6 +12,9 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://jitpack.io")
         maven("https://repo.codemc.io/repository/maven-public")
+        flatDir {
+            dirs("FCLauncher/libs")
+        }
     }
 }
 rootProject.name = "Fold Craft Launcher"
