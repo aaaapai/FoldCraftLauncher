@@ -133,8 +133,6 @@ public class DefaultLauncher extends Launcher {
             res.addDefault("-Xss", "1m");
         }
 
-        res.addDefault("-XX:ActiveProcessorCount=", String.valueOf(Runtime.getRuntime().availableProcessors()));
-
         res.addDefault("-Dfml.ignoreInvalidMinecraftCertificates=", "true");
         res.addDefault("-Dfml.ignorePatchDiscrepancies=", "true");
 
@@ -150,7 +148,6 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Dos.name=", "Linux");
         res.addDefault("-Dos.version=Android-", Build.VERSION.RELEASE);
         res.addDefault("-Dorg.lwjgl.opengl.libname=", "${gl_lib_name}");
-        res.addDefault("-Dorg.lwjgl.freetype.libname=", context.getApplicationInfo().nativeLibraryDir + "/libfreetype.so");
         res.addDefault("-Dfml.earlyprogresswindow=", "false");
         if (FCLBridge.BACKEND_IS_BOAT) {
             res.addDefault("-Dwindow.width=", options.getWidth() + "");
@@ -291,7 +288,6 @@ public class DefaultLauncher extends Launcher {
             res.add("--add-exports=java.desktop/sun.awt.event=ALL-UNNAMED");
             res.add("--add-exports=java.desktop/sun.awt.datatransfer=ALL-UNNAMED");
             res.add("--add-exports=java.desktop/sun.font=ALL-UNNAMED");
-            res.add("--add-exports=java.base/sun.security.action=ALL-UNNAMED");
             res.add("--add-opens=java.base/java.util=ALL-UNNAMED");
             res.add("--add-opens=java.desktop/java.awt=ALL-UNNAMED");
             res.add("--add-opens=java.desktop/sun.font=ALL-UNNAMED");
