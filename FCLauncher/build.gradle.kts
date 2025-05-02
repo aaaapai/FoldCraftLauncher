@@ -54,7 +54,7 @@ android {
 }
 
 dependencies {
-    implementation(fileTree("dir" to "libs", "include" to listOf("*.aar")))
+    implementation(name = "bytehook-release", ext = "aar")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.13.0-alpha13")
 }
