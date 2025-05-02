@@ -49,8 +49,6 @@ class RendererUtil {
                     add(FCLConfig.Renderer.RENDERER_VIRGL)
                     add(FCLConfig.Renderer.RENDERER_VGPU)
                     add(FCLConfig.Renderer.RENDERER_ZINK)
-                    add(FCLConfig.Renderer.RENDERER_FREEDRENO)
-                    add(FCLConfig.Renderer.RENDERER_GL4ESPLUS)
                 }
                 if (position > rendererList.size - 1) {
                     versionSetting.renderer = FCLConfig.Renderer.RENDERER_CUSTOM
