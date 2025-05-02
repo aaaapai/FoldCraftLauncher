@@ -7,6 +7,6 @@ plugins {
 
 allprojects {
       repositories {
-          flatDir { dirs("libs") }
+          flatDir { dirs("FCLauncher/libs") }
       }
 }
