@@ -36,8 +36,6 @@ class RendererUtil {
                     add(context.getString(R.string.settings_fcl_renderer_virgl))
                     add(context.getString(R.string.settings_fcl_renderer_vgpu))
                     add(context.getString(R.string.settings_fcl_renderer_zink))
-                    add(context.getString(R.string.settings_fcl_renderer_freedreno))
-                    add(context.getString(R.string.settings_fcl_renderer_gl4esp))
                     RendererPlugin.rendererList.forEach {
                         add(it.des)
                     }
