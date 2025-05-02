@@ -41,7 +41,6 @@ android {
 dependencies {
     implementation(project(":FCLauncher"))
     implementation(project(":ZipFileSystem"))
-    implementation(name = "bytehook-release", ext = "aar")
     implementation("org.nanohttpd:nanohttpd:2.3.1")
     implementation("com.github.steveice10:opennbt:1.5")
     implementation("org.tukaani:xz:1.10")
