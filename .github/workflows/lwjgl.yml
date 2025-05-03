@@ -1,7 +1,7 @@
-name: LWJGL CI
+name: LWJGL
 
 on:
-  pull_request:  
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -33,4 +33,3 @@ jobs:
           name: lwjgl-glfw-classes
           path: |
                 out/lwjgl.jar
-          
