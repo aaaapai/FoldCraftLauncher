@@ -1,4 +1,4 @@
-name: LWJGL
+name: LWJGL CI
 
 on:
   pull_request:
