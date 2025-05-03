@@ -1,11 +1,11 @@
-name: LWJGL
+name: Android CI
 
 on:
-  pull_request:
+  pull_request:  
   workflow_dispatch:
 
 jobs:
-  LWJGL_Build:
+  Build:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -22,14 +22,13 @@ jobs:
         with:
            allow-snapshot-wrappers: true
       
-      - name: Build LWJGL
+      - name: Build apk
         run: |
           chmod +x gradlew
-          ./gradlew LWJGL-Pojav:build
+          ./gradlew assemblerelease -Darch=arm64
 
-      - name: Upload lwjgl
+      - name: Upload apk
         uses: actions/upload-artifact@main
         with:
-          name: lwjgl-glfw-classes
-          path: |
-                out/lwjgl.jar
+          name: app-debug-arm64
+          path: FCL/build/outputs/apk/release/*
