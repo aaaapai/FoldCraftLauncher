@@ -68,12 +68,12 @@ public class DefaultLauncher extends Launcher {
 
         res.addAllWithoutParsing(options.getOverrideJavaArguments());
 
-        if (options.getMaxMemory() != null && options.getMaxMemory() > 0)
-            res.addDefault("-Xmx", options.getMaxMemory() + "m");
+        //if (options.getMaxMemory() != null && options.getMaxMemory() > 0)
+        //    res.addDefault("-Xmx", options.getMaxMemory() + "m");
 
-        if (options.getMinMemory() != null && options.getMinMemory() > 0
-                && (options.getMaxMemory() == null || options.getMinMemory() <= options.getMaxMemory()))
-            res.addDefault("-Xms", options.getMinMemory() + "m");
+        //if (options.getMinMemory() != null && options.getMinMemory() > 0
+        //        && (options.getMaxMemory() == null || options.getMinMemory() <= options.getMaxMemory()))
+        //    res.addDefault("-Xms", options.getMinMemory() + "m");
 
         if (options.getMetaspace() != null && options.getMetaspace() > 0)
             res.addDefault("-XX:MetaspaceSize=", options.getMetaspace() + "m");
@@ -148,6 +148,7 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Dos.name=", "Linux");
         res.addDefault("-Dos.version=Android-", Build.VERSION.RELEASE);
         res.addDefault("-Dorg.lwjgl.opengl.libname=", "${gl_lib_name}");
+        res.addDefault("-Dorg.lwjgl.opengl.renderertag=", "${POJAV_RENDERER_TAG}");
         res.addDefault("-Dfml.earlyprogresswindow=", "false");
         if (FCLBridge.BACKEND_IS_BOAT) {
             res.addDefault("-Dwindow.width=", options.getWidth() + "");
