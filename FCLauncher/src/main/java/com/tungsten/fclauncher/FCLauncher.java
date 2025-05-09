@@ -268,16 +268,17 @@ public class FCLauncher {
             envMap.put("LIBGL_NAME", renderer.getGlLibName());
         }
         if (renderer == FCLConfig.Renderer.RENDERER_GL4ES || renderer == FCLConfig.Renderer.RENDERER_VGPU) {
-            envMap.put("LIBGL_ES", "2");
+            envMap.put("LIBGL_ES", "3");
+            envMap.put("LIBGL_GLES", "libGLESv3.so");
             envMap.put("LIBGL_MIPMAP", "3");
             envMap.put("LIBGL_NORMALIZE", "1");
             envMap.put("LIBGL_NOINTOVLHACK", "1");
             envMap.put("LIBGL_NOERROR", "1");
             if (!FCLBridge.BACKEND_IS_BOAT) {
                 if (renderer == FCLConfig.Renderer.RENDERER_GL4ES) {
-                    envMap.put("POJAV_RENDERER", "opengles2");
+                    envMap.put("POJAV_RENDERER", "opengles3");
                 } else {
-                    envMap.put("POJAV_RENDERER", "opengles2_vgpu");
+                    envMap.put("POJAV_RENDERER", "opengles3_vgpu");
                 }
             }
         } else {
@@ -288,11 +289,19 @@ public class FCLauncher {
             envMap.put("allow_higher_compat_version", "true");
             envMap.put("allow_glsl_extension_directive_midshader", "true");
             envMap.put("MESA_LOADER_DRIVER_OVERRIDE", "zink");
+            envMap.put("MESA_NO_ERROR", "true");
+            envMap.put("mesa_glthread", "true");
+            envMap.put("MESA_GLTHREAD", "true");
+            envMap.put("VTEST_SOCKET_NAME", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
+            envMap.put("MESA_SHADER_CACHE_DIR", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
+            envMap.put("MESA_DISK_CACHE_SINGLE_FILE", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
+            envMap.put("MESA_DISK_CACHE_MULTI_FILE", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
             envMap.put("VTEST_SOCKET_NAME", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
             if (renderer == FCLConfig.Renderer.RENDERER_VIRGL) {
                 if (FCLBridge.BACKEND_IS_BOAT) {
                     envMap.put("GALLIUM_DRIVER", "virpipe");
                 } else {
+                    envMap.put("GALLIUM_DRIVER", "virpipe");
                     envMap.put("POJAV_RENDERER", "gallium_virgl");
                 }
                 envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "0");
