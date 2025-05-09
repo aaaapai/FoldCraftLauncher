@@ -148,7 +148,6 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Dos.name=", "Linux");
         res.addDefault("-Dos.version=Android-", Build.VERSION.RELEASE);
         res.addDefault("-Dorg.lwjgl.opengl.libname=", "${gl_lib_name}");
-        res.addDefault("-Dorg.lwjgl.opengl.renderertag=", "${POJAV_RENDERER_TAG}");
         res.addDefault("-Dfml.earlyprogresswindow=", "false");
         if (FCLBridge.BACKEND_IS_BOAT) {
             res.addDefault("-Dwindow.width=", options.getWidth() + "");
@@ -166,7 +165,6 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Dorg.lwjgl.vulkan.libname=", "libvulkan.so");
         res.addDefault("-Dsodium.checks.issue2561=", "false");
         res.addDefault("-Djdk.lang.Process.launchMechanism=", "FORK");
-        res.addDefault("-Dcpu.name=", FCLauncher.getSocName());
         File libJna = new File(FCLPath.RUNTIME_DIR, "jna");
         if (jnaVersion != null && !jnaVersion.isEmpty()) {
             libJna = new File(libJna, jnaVersion);
