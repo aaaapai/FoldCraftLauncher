@@ -24,19 +24,19 @@ public class LibFilter {
             "      \"name\": \"net.java.dev.jna:jna:5.17.0\",\n" +
             "      \"downloads\": {\n" +
             "        \"artifact\": {\n" +
-            "          \"path\": \"net/java/dev/jna/jna-jpms/5.17.0/jna-jpms-5.17.0.jar\",\n" +
+            "          \"path\": \"net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar\",\n" +
             "          \"sha1\": \"5dc5682b4228c7efc0741fa12606ea4d3983a9e4\",\n" +
-            "          \"url\": \"https://repo1.maven.org/maven2/net/java/dev/jna/jna-jpms/5.17.0/jna-jpms-5.17.0.jar\"\n" +
+            "          \"url\": \"https://repo1.maven.org/maven2/net/java/dev/jna/jna/5.17.0/jna-5.17.0.jar\"\n" +
             "        }\n" +
             "      }\n" +
             "    }";
     private static final String JNA_5_17_PLATFORM_STRING = "{\n" +
-            "      \"name\": \"net.java.dev.jna:jna:5.17.0\",\n" +
+            "      \"name\": \"net.java.dev.jna:jna-platform:5.17.0\",\n" +
             "      \"downloads\": {\n" +
             "        \"artifact\": {\n" +
-            "          \"path\": \"net/java/dev/jna/jna-platform-jpms/5.17.0/jna-platform-jpms-5.17.0.jar\",\n" +
+            "          \"path\": \"net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar\",\n" +
             "          \"sha1\": \"3e188fef07cb6a9ac434ec30f59e6c622045bf13\",\n" +
-            "          \"url\": \"https://repo1.maven.org/maven2/net/java/dev/jna/jna-platform-jpms/5.17.0/jna-platform-jpms-5.17.0.jar\"\n" +
+            "          \"url\": \"https://repo1.maven.org/maven2/net/java/dev/jna/jna-platform/5.17.0/jna-platform-5.17.0.jar\"\n" +
             "        }\n" +
             "      }\n" +
             "    }";
