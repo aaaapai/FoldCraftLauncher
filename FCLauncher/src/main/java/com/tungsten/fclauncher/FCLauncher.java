@@ -276,9 +276,9 @@ public class FCLauncher {
             envMap.put("LIBGL_NOERROR", "1");
             if (!FCLBridge.BACKEND_IS_BOAT) {
                 if (renderer == FCLConfig.Renderer.RENDERER_GL4ES) {
-                    envMap.put("POJAV_RENDERER", "opengles3");
+                    envMap.put("TAG_RENDERER", "opengles3");
                 } else {
-                    envMap.put("POJAV_RENDERER", "opengles3_vgpu");
+                    envMap.put("TAG_RENDERER", "opengles3_vgpu");
                 }
             }
         } else {
@@ -302,14 +302,14 @@ public class FCLauncher {
                     envMap.put("GALLIUM_DRIVER", "virpipe");
                 } else {
                     envMap.put("GALLIUM_DRIVER", "virpipe");
-                    envMap.put("POJAV_RENDERER", "gallium_virgl");
+                    envMap.put("TAG_RENDERER", "gallium_virgl");
                 }
                 envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "0");
             } else if (renderer == FCLConfig.Renderer.RENDERER_ZINK) {
                 if (FCLBridge.BACKEND_IS_BOAT) {
                     envMap.put("GALLIUM_DRIVER", "zink");
                 } else {
-                    envMap.put("POJAV_RENDERER", "vulkan_zink");
+                    envMap.put("TAG_RENDERER", "vulkan_zink");
                 }
             }
         }
