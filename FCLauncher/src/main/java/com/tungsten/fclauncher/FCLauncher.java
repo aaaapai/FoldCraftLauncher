@@ -246,6 +246,7 @@ public class FCLauncher {
             } else {
                 envMap.put("POJAVEXEC_EGL", eglName);
                 envList = RendererPlugin.getSelected().getPojavEnv();
+                envMap.put("TAG_RENDERER", Os.getenv("POJAV_RENDERER"));
             }
             envList.forEach(env -> {
                 String[] split = env.split("=");
