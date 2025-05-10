@@ -302,7 +302,6 @@ public class FCLauncher {
                 if (FCLBridge.BACKEND_IS_BOAT) {
                     envMap.put("GALLIUM_DRIVER", "virpipe");
                 } else {
-                    envMap.put("GALLIUM_DRIVER", "virpipe");
                     envMap.put("TAG_RENDERER", "gallium_virgl");
                 }
                 envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "0");
