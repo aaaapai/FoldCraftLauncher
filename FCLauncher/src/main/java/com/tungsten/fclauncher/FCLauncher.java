@@ -246,7 +246,22 @@ public class FCLauncher {
             } else {
                 envMap.put("POJAVEXEC_EGL", eglName);
                 envList = RendererPlugin.getSelected().getPojavEnv();
-                envMap.put("TAG_RENDERER", envMap.get("POJAV_RENDERER"));
+
+                String pojavRenderer = null;
+                for (String env : envList) {
+                    String[] split = env.split("=");
+                    if (split.length >= 2 && split[0].equals("POJAV_RENDERER")) {
+                    pojavRenderer = split[1];
+                    break;
+                    }
+                }
+    
+                if (pojavRenderer != null) {
+                   envMap.put("TAG_RENDERER", pojavRenderer);
+                } else {
+                   envMap.put("TAG_RENDERER", "opengles3");
+                }
+    
             }
             envList.forEach(env -> {
                 String[] split = env.split("=");
