@@ -11,6 +11,10 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven("https://jitpack.io")
+        maven("https://repo.codemc.io/repository/maven-public")
+        flatDir {
+            dirs("FCLauncher/libs")
+        }
     }
 }
 rootProject.name = "Fold Craft Launcher"
@@ -18,6 +22,4 @@ include(":FCL")
 include(":FCLCore")
 include(":FCLauncher")
 include(":FCLLibrary")
-include(":LWJGL-Pojav")
-include(":LWJGL-Boat")
 include(":ZipFileSystem")

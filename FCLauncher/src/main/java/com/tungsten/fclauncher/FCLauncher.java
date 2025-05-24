@@ -246,6 +246,22 @@ public class FCLauncher {
             } else {
                 envMap.put("POJAVEXEC_EGL", eglName);
                 envList = RendererPlugin.getSelected().getPojavEnv();
+
+                String pojavRenderer = null;
+                for (String env : envList) {
+                    String[] split = env.split("=");
+                    if (split.length >= 2 && split[0].equals("POJAV_RENDERER")) {
+                    pojavRenderer = split[1];
+                    break;
+                    }
+                }
+    
+                if (pojavRenderer != null) {
+                   envMap.put("TAG_RENDERER", pojavRenderer);
+                } else {
+                   envMap.put("TAG_RENDERER", "opengles3");
+                }
+    
             }
             envList.forEach(env -> {
                 String[] split = env.split("=");
@@ -266,67 +282,49 @@ public class FCLauncher {
         if (FCLBridge.BACKEND_IS_BOAT) {
             envMap.put("LIBGL_STRING", renderer.toString());
             envMap.put("LIBGL_NAME", renderer.getGlLibName());
-            if (useAngle && renderer == FCLConfig.Renderer.RENDERER_GL4ESPLUS) {
-                envMap.put("LIBEGL_NAME", "libEGL_angle.so");
-                envMap.put("LIBGL_BACKEND_ANGLE", "1");
-            } else {
-                envMap.put("LIBEGL_NAME", renderer.getEglLibName());
-                envMap.put("LIBGL_BACKEND_ANGLE", "0");
-            }
         }
         if (renderer == FCLConfig.Renderer.RENDERER_GL4ES || renderer == FCLConfig.Renderer.RENDERER_VGPU) {
-            envMap.put("LIBGL_ES", "2");
+            envMap.put("LIBGL_ES", "3");
+            envMap.put("LIBGL_GLES", "libGLESv3.so");
             envMap.put("LIBGL_MIPMAP", "3");
             envMap.put("LIBGL_NORMALIZE", "1");
             envMap.put("LIBGL_NOINTOVLHACK", "1");
             envMap.put("LIBGL_NOERROR", "1");
             if (!FCLBridge.BACKEND_IS_BOAT) {
                 if (renderer == FCLConfig.Renderer.RENDERER_GL4ES) {
-                    envMap.put("POJAV_RENDERER", "opengles2");
+                    envMap.put("TAG_RENDERER", "opengles3");
                 } else {
-                    envMap.put("POJAV_RENDERER", "opengles2_vgpu");
+                    envMap.put("TAG_RENDERER", "opengles3_vgpu");
                 }
-            }
-        } else if (renderer == FCLConfig.Renderer.RENDERER_GL4ESPLUS) {
-            envMap.put("LIBGL_ES", "3");
-            envMap.put("LIBGL_MIPMAP", "3");
-            envMap.put("LIBGL_NORMALIZE", "1");
-            envMap.put("LIBGL_NOINTOVLHACK", "1");
-            envMap.put("LIBGL_SHADERCONVERTER", "1");
-            envMap.put("LIBGL_GL", "21");
-            envMap.put("LIBGL_USEVBO", "1");
-            if (!FCLBridge.BACKEND_IS_BOAT) {
-                envMap.put("POJAV_RENDERER", "opengles3");
-                envMap.put("POJAVEXEC_EGL", useAngle ? "libEGL_angle.so" : renderer.getEglLibName());
             }
         } else {
             envMap.put("MESA_GLSL_CACHE_DIR", config.getContext().getCacheDir().getAbsolutePath());
-            envMap.put("MESA_GL_VERSION_OVERRIDE", renderer == FCLConfig.Renderer.RENDERER_VIRGL ? "4.3" : "4.6");
-            envMap.put("MESA_GLSL_VERSION_OVERRIDE", renderer == FCLConfig.Renderer.RENDERER_VIRGL ? "430" : "460");
+            envMap.put("MESA_GL_VERSION_OVERRIDE", "4.6");
+            envMap.put("MESA_GLSL_VERSION_OVERRIDE", "460");
             envMap.put("force_glsl_extensions_warn", "true");
             envMap.put("allow_higher_compat_version", "true");
             envMap.put("allow_glsl_extension_directive_midshader", "true");
             envMap.put("MESA_LOADER_DRIVER_OVERRIDE", "zink");
+            envMap.put("MESA_NO_ERROR", "true");
+            envMap.put("mesa_glthread", "true");
+            envMap.put("MESA_GLTHREAD", "true");
+            envMap.put("VTEST_SOCKET_NAME", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
+            envMap.put("MESA_SHADER_CACHE_DIR", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
+            envMap.put("MESA_DISK_CACHE_SINGLE_FILE", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
+            envMap.put("MESA_DISK_CACHE_MULTI_FILE", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
             envMap.put("VTEST_SOCKET_NAME", new File(config.getContext().getCacheDir().getAbsolutePath(), ".virgl_test").getAbsolutePath());
             if (renderer == FCLConfig.Renderer.RENDERER_VIRGL) {
                 if (FCLBridge.BACKEND_IS_BOAT) {
                     envMap.put("GALLIUM_DRIVER", "virpipe");
                 } else {
-                    envMap.put("POJAV_RENDERER", "gallium_virgl");
+                    envMap.put("TAG_RENDERER", "gallium_virgl");
                 }
-                envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "1");
+                envMap.put("OSMESA_NO_FLUSH_FRONTBUFFER", "0");
             } else if (renderer == FCLConfig.Renderer.RENDERER_ZINK) {
                 if (FCLBridge.BACKEND_IS_BOAT) {
                     envMap.put("GALLIUM_DRIVER", "zink");
                 } else {
-                    envMap.put("POJAV_RENDERER", "vulkan_zink");
-                }
-            } else if (renderer == FCLConfig.Renderer.RENDERER_FREEDRENO) {
-                if (FCLBridge.BACKEND_IS_BOAT) {
-                    envMap.put("GALLIUM_DRIVER", "freedreno");
-                    envMap.put("MESA_LOADER_DRIVER_OVERRIDE", "kgsl");
-                } else {
-                    envMap.put("POJAV_RENDERER", "gallium_freedreno");
+                    envMap.put("TAG_RENDERER", "vulkan_zink");
                 }
             }
         }

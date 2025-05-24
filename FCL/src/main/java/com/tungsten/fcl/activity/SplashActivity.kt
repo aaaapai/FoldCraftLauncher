@@ -50,10 +50,6 @@ class SplashActivity : FCLActivity() {
     var cacio: Boolean = false
     var cacio11: Boolean = false
     var cacio17: Boolean = false
-    var java8: Boolean = false
-    var java11: Boolean = false
-    var java17: Boolean = false
-    var java21: Boolean = false
     var jna: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,7 +94,8 @@ class SplashActivity : FCLActivity() {
         Task.runAsync {
             initState()
         }.whenComplete(Schedulers.androidUIThread()) {
-            if (lwjgl && cacio && cacio11 && cacio17 && java8 && java11 && java17 && java21 && jna) {
+            if (lwjgl && cacio && cacio11 && cacio17 
+                && jna) {
                 enterLauncher()
             } else {
                 start()
@@ -193,9 +190,6 @@ class SplashActivity : FCLActivity() {
             lwjgl = RuntimeUtils.isLatest(
                 FCLPath.LWJGL_DIR,
                 "/assets/app_runtime/lwjgl"
-            ) && RuntimeUtils.isLatest(
-                FCLPath.LWJGL_DIR + "-boat",
-                "/assets/app_runtime/lwjgl-boat"
             )
             cacio = RuntimeUtils.isLatest(
                 FCLPath.CACIOCAVALLO_8_DIR,
@@ -209,10 +203,6 @@ class SplashActivity : FCLActivity() {
                 FCLPath.CACIOCAVALLO_17_DIR,
                 "/assets/app_runtime/caciocavallo17"
             )
-            java8 = RuntimeUtils.isLatest(FCLPath.JAVA_8_PATH, "/assets/app_runtime/java/jre8")
-            java11 = RuntimeUtils.isLatest(FCLPath.JAVA_11_PATH, "/assets/app_runtime/java/jre11")
-            java17 = RuntimeUtils.isLatest(FCLPath.JAVA_17_PATH, "/assets/app_runtime/java/jre17")
-            java21 = RuntimeUtils.isLatest(FCLPath.JAVA_21_PATH, "/assets/app_runtime/java/jre21")
             jna = RuntimeUtils.isLatest(FCLPath.JNA_PATH, "/assets/app_runtime/jna")
             if (!File(FCLPath.JAVA_PATH, "resolv.conf").exists()) {
                 if (LocaleUtils.getSystemLocale().displayName != Locale.CHINA.displayName) {

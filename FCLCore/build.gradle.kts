@@ -17,7 +17,11 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
         create("fordebug") {
             initWith(getByName("debug"))
@@ -25,12 +29,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
 }
 
@@ -39,14 +43,14 @@ dependencies {
     implementation(project(":ZipFileSystem"))
     implementation("org.nanohttpd:nanohttpd:2.3.1")
     implementation("com.github.steveice10:opennbt:1.5")
-    implementation("org.tukaani:xz:1.9")
-    implementation("commons-io:commons-io:2.15.1")
-    implementation("org.apache.commons:commons-lang3:3.14.0")
-    implementation("org.apache.commons:commons-compress:1.26.0")
-    implementation("com.moandjiezana.toml:toml4j:0.7.2")
+    implementation("org.tukaani:xz:1.10")
+    implementation("commons-io:commons-io:2.19.0")
+    implementation("org.apache.commons:commons-lang3:3.17.0")
+    implementation("org.apache.commons:commons-compress:1.27.1")
+    implementation("io.hotmoka:toml4j:0.7.3")
     implementation("org.jenkins-ci:constant-pool-scanner:1.2")
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("org.jsoup:jsoup:1.18.3")
+    implementation("com.google.android.material:material:1.14.0-alpha01")
+    implementation("org.jsoup:jsoup:1.20.1")
 }

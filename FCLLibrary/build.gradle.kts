@@ -17,7 +17,11 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
         create("fordebug") {
             initWith(getByName("debug"))
@@ -26,12 +30,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "21"
     }
 
     buildFeatures {
@@ -42,10 +46,10 @@ android {
 dependencies {
     implementation(project(":FCLauncher"))
     implementation(project(":FCLCore"))
-    implementation("commons-io:commons-io:2.15.1")
+    implementation("commons-io:commons-io:2.19.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.asynclayoutinflater:asynclayoutinflater:1.0.0")
+    implementation("com.google.android.material:material:1.13.0-alpha13")
+    implementation("androidx.asynclayoutinflater:asynclayoutinflater:1.1.0")
     implementation("net.fornwall:jelf:0.9.0")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.bumptech.glide:glide:5.0.0-rc01")
 }

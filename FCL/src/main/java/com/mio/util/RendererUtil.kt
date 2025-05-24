@@ -36,8 +36,6 @@ class RendererUtil {
                     add(context.getString(R.string.settings_fcl_renderer_virgl))
                     add(context.getString(R.string.settings_fcl_renderer_vgpu))
                     add(context.getString(R.string.settings_fcl_renderer_zink))
-                    add(context.getString(R.string.settings_fcl_renderer_freedreno))
-                    add(context.getString(R.string.settings_fcl_renderer_gl4esp))
                     RendererPlugin.rendererList.forEach {
                         add(it.des)
                     }
@@ -49,8 +47,6 @@ class RendererUtil {
                     add(FCLConfig.Renderer.RENDERER_VIRGL)
                     add(FCLConfig.Renderer.RENDERER_VGPU)
                     add(FCLConfig.Renderer.RENDERER_ZINK)
-                    add(FCLConfig.Renderer.RENDERER_FREEDRENO)
-                    add(FCLConfig.Renderer.RENDERER_GL4ESPLUS)
                 }
                 if (position > rendererList.size - 1) {
                     versionSetting.renderer = FCLConfig.Renderer.RENDERER_CUSTOM

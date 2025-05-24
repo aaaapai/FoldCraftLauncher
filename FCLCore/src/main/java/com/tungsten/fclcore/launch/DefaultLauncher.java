@@ -68,12 +68,12 @@ public class DefaultLauncher extends Launcher {
 
         res.addAllWithoutParsing(options.getOverrideJavaArguments());
 
-        if (options.getMaxMemory() != null && options.getMaxMemory() > 0)
-            res.addDefault("-Xmx", options.getMaxMemory() + "m");
+        //if (options.getMaxMemory() != null && options.getMaxMemory() > 0)
+        //    res.addDefault("-Xmx", options.getMaxMemory() + "m");
 
-        if (options.getMinMemory() != null && options.getMinMemory() > 0
-                && (options.getMaxMemory() == null || options.getMinMemory() <= options.getMaxMemory()))
-            res.addDefault("-Xms", options.getMinMemory() + "m");
+        //if (options.getMinMemory() != null && options.getMinMemory() > 0
+        //        && (options.getMaxMemory() == null || options.getMinMemory() <= options.getMaxMemory()))
+        //    res.addDefault("-Xms", options.getMinMemory() + "m");
 
         if (options.getMetaspace() != null && options.getMetaspace() > 0)
             res.addDefault("-XX:MetaspaceSize=", options.getMetaspace() + "m");
@@ -133,8 +133,6 @@ public class DefaultLauncher extends Launcher {
             res.addDefault("-Xss", "1m");
         }
 
-        res.addDefault("-XX:ActiveProcessorCount=", String.valueOf(Runtime.getRuntime().availableProcessors()));
-
         res.addDefault("-Dfml.ignoreInvalidMinecraftCertificates=", "true");
         res.addDefault("-Dfml.ignorePatchDiscrepancies=", "true");
 
@@ -150,7 +148,6 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Dos.name=", "Linux");
         res.addDefault("-Dos.version=Android-", Build.VERSION.RELEASE);
         res.addDefault("-Dorg.lwjgl.opengl.libname=", "${gl_lib_name}");
-        res.addDefault("-Dorg.lwjgl.freetype.libname=", context.getApplicationInfo().nativeLibraryDir + "/libfreetype.so");
         res.addDefault("-Dfml.earlyprogresswindow=", "false");
         if (FCLBridge.BACKEND_IS_BOAT) {
             res.addDefault("-Dwindow.width=", options.getWidth() + "");
@@ -168,7 +165,6 @@ public class DefaultLauncher extends Launcher {
         res.addDefault("-Dorg.lwjgl.vulkan.libname=", "libvulkan.so");
         res.addDefault("-Dsodium.checks.issue2561=", "false");
         res.addDefault("-Djdk.lang.Process.launchMechanism=", "FORK");
-        res.addDefault("-Dcpu.name=", FCLauncher.getSocName());
         File libJna = new File(FCLPath.RUNTIME_DIR, "jna");
         if (jnaVersion != null && !jnaVersion.isEmpty()) {
             libJna = new File(libJna, jnaVersion);
@@ -291,7 +287,6 @@ public class DefaultLauncher extends Launcher {
             res.add("--add-exports=java.desktop/sun.awt.event=ALL-UNNAMED");
             res.add("--add-exports=java.desktop/sun.awt.datatransfer=ALL-UNNAMED");
             res.add("--add-exports=java.desktop/sun.font=ALL-UNNAMED");
-            res.add("--add-exports=java.base/sun.security.action=ALL-UNNAMED");
             res.add("--add-opens=java.base/java.util=ALL-UNNAMED");
             res.add("--add-opens=java.desktop/java.awt=ALL-UNNAMED");
             res.add("--add-opens=java.desktop/sun.font=ALL-UNNAMED");

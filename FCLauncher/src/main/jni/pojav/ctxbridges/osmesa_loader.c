@@ -25,11 +25,11 @@ void* (*OSMesaGetProcAddress_p)(const char* funcName);
 bool dlsym_OSMesa() {
     void *dl_handle = NULL;
     if (pojav_environ->config_renderer == RENDERER_VIRGL) {
-        dl_handle = dlopen("libOSMesa_81.so", RTLD_LOCAL | RTLD_LAZY);
+        dl_handle = dlopen("libOSMesa_2121.so", RTLD_LOCAL | RTLD_LAZY);
     } else {
         char *lib_name = getenv("LIB_MESA_NAME");
         if (!lib_name) {
-            lib_name = "libOSMesa_8.so";
+            lib_name = "libOSMesa_2304.so";
         }
         dl_handle = dlopen(lib_name, RTLD_LOCAL | RTLD_LAZY);
     }

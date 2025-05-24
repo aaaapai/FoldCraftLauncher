@@ -1,9 +1,9 @@
 [versions]
 compileSdk = "35"
-minSdk = "26"
-targetSdk = "34"
-agp = "8.7.2"
-kotlin = "2.0.21"
+minSdk = "21"
+targetSdk = "35"
+agp = "8.11.0-alpha07"
+kotlin = "2.2.0-Beta1"
 [libraries]
 
 [plugins]
