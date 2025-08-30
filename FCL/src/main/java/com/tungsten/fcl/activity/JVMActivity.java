@@ -1,57 +1,42 @@
 package com.tungsten.fcl.activity;
 
 import android.content.res.Configuration;
-import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.Surface;
-import android.view.TextureView;
-import android.view.View;
+import android.view.SurfaceHolder;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.tungsten.fcl.R;
 import com.tungsten.fcl.control.GameMenu;
 import com.tungsten.fcl.control.JarExecutorMenu;
 import com.tungsten.fcl.control.MenuCallback;
 import com.tungsten.fcl.control.MenuType;
-import com.tungsten.fcl.control.view.MenuView;
-import com.tungsten.fcl.setting.GameOption;
+import com.tungsten.fcl.util.AndroidUtils;
 import com.tungsten.fclauncher.bridge.FCLBridge;
 import com.tungsten.fclauncher.keycodes.FCLKeycodes;
 import com.tungsten.fclauncher.keycodes.LwjglGlfwKeycode;
 import com.tungsten.fclcore.util.Logging;
-import com.tungsten.fcllibrary.component.FCLActivity;
+import com.tungsten.fcllibrary.component.FCLNativeActivity;
 
 import org.lwjgl.glfw.CallbackBridge;
 
-import java.util.Objects;
 import java.util.logging.Level;
-
-import android.view.Gravity;
-import android.view.SurfaceHolder;
-import android.widget.PopupWindow;
-import com.tungsten.fcl.util.AndroidUtils;
-import com.tungsten.fcllibrary.component.FCLNativeActivity;
 
 public class JVMActivity extends FCLNativeActivity {
 
     //private TextureView textureView;
+
     private PopupWindow popupWindow;
 
     private MenuCallback menu;
     private static MenuType menuType;
     private static FCLBridge fclBridge;
-    /*private boolean isTranslated = false;
-    private static boolean isRunning = false;*/
-    private long volumeDownTime = 0;
+    //private boolean isTranslated = false;
+    //private static boolean isRunning = false;
 
     public static void setFCLBridge(FCLBridge fclBridge, MenuType menuType) {
         JVMActivity.fclBridge = fclBridge;
@@ -61,7 +46,8 @@ public class JVMActivity extends FCLNativeActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_jvm);
+        //setContentView(R.layout.activity_jvm);
+
         popupWindow = new PopupWindow();
         popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -75,14 +61,15 @@ public class JVMActivity extends FCLNativeActivity {
 
         menu = menuType == MenuType.GAME ? new GameMenu() : new JarExecutorMenu();
         menu.setup(this, fclBridge);
-        /*textureView = findViewById(R.id.texture_view);
-        textureView.setSurfaceTextureListener(this);
 
-        addContentView(menu.getLayout(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));*/
         popupWindow.setContentView(menu.getLayout());
-        
-        /*getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+
+        //textureView = findViewById(R.id.texture_view);
+        //textureView.setSurfaceTextureListener(this);
+
+        //addContentView(menu.getLayout(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        /*getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             if (menuType == MenuType.GAME && ((GameMenu) menu).getMenuSetting().isDisableSoftKeyAdjust()) {
                 return;
             }
@@ -164,7 +151,8 @@ public class JVMActivity extends FCLNativeActivity {
         if (output < 1) {
             output++;
         }
-    }*/
+    }
+     */
 
     @Override
     protected void onPause() {
@@ -207,28 +195,6 @@ public class JVMActivity extends FCLNativeActivity {
                     menu.getInput().sendKeyEvent(FCLKeycodes.KEY_ESC, true);
                     menu.getInput().sendKeyEvent(FCLKeycodes.KEY_ESC, false);
                     return true;
-                } else if ((event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_DOWN || event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP)) {
-                    MenuView menuView = ((GameMenu) menu).getMenuView();
-                    if (menuView.getAlpha() == 0 || menuView.getVisibility() == View.INVISIBLE) {
-                        DrawerLayout drawerLayout = (DrawerLayout) menu.getLayout();
-                        if (drawerLayout.isDrawerOpen(GravityCompat.START) || drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                            if (event.getAction() == KeyEvent.ACTION_UP) {
-                                drawerLayout.closeDrawers();
-                                volumeDownTime = System.currentTimeMillis();
-                            }
-                        } else {
-                            if (System.currentTimeMillis() - volumeDownTime > 800) {
-                                if (event.getAction() == KeyEvent.ACTION_DOWN) {
-                                    return true;
-                                } else {
-                                    drawerLayout.openDrawer(GravityCompat.START, true);
-                                    drawerLayout.openDrawer(GravityCompat.END, true);
-                                }
-                            } else {
-                                volumeDownTime = System.currentTimeMillis();
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -236,29 +202,24 @@ public class JVMActivity extends FCLNativeActivity {
     }
 
     @Override
-    public boolean dispatchGenericMotionEvent(MotionEvent event) {
-        if (menu != null && menuType == MenuType.GAME) {
-            if (menu.getInput().handleGenericMotionEvent(event)) {
-                return true;
-            }
-        }
-        return super.dispatchGenericMotionEvent(event);
-    }
-
-    @Override
     protected void onPostResume() {
         super.onPostResume();
         /*if (textureView != null && textureView.getSurfaceTexture() != null) {
             textureView.post(() -> onSurfaceTextureSizeChanged(textureView.getSurfaceTexture(), textureView.getWidth(), textureView.getHeight()));
-        }*/
+        }
+
+         */
     }
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        /*if (textureView != null && textureView.getSurfaceTexture() != null) {
+        /*
+        if (textureView != null && textureView.getSurfaceTexture() != null) {
             textureView.post(() -> onSurfaceTextureSizeChanged(textureView.getSurfaceTexture(), textureView.getWidth(), textureView.getHeight()));
-        }*/
+        }
+
+         */
     }
 
     @Override
