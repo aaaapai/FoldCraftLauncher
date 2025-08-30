@@ -38,8 +38,8 @@ jobs:
 
       - name: Upload apk
         if: startsWith(github.ref, 'refs/heads/')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@main
         with:
           name: app-${{matrix.arch}}
-          path: FCL/build/outputs/apk/release/*
+          path: FCL/build/outputs/apk/**/*
         #  retention-days: 1
