@@ -89,10 +89,12 @@ import java.util.stream.Collectors;
 import fr.spse.gamepad_remapper.Remapper;
 import kotlin.Unit;
 
+import android.app.Activity;
+
 public class GameMenu implements MenuCallback, View.OnClickListener {
 
     private boolean simulated;
-    private FCLActivity activity;
+    private Activity activity;
     @Nullable
     private FCLBridge fclBridge;
     private FCLInput fclInput;
@@ -142,7 +144,7 @@ public class GameMenu implements MenuCallback, View.OnClickListener {
         return menuView;
     }
 
-    public FCLActivity getActivity() {
+    public Activity getActivity() {
         return activity;
     }
 
@@ -512,7 +514,7 @@ public class GameMenu implements MenuCallback, View.OnClickListener {
     }
 
     @Override
-    public void setup(FCLActivity activity, FCLBridge fclBridge) {
+    public void setup(Activity activity, FCLBridge fclBridge) {
         this.activity = activity;
         this.fclBridge = fclBridge;
         this.simulated = fclBridge == null;
@@ -572,7 +574,7 @@ public class GameMenu implements MenuCallback, View.OnClickListener {
         cursorView = findViewById(R.id.cursor);
 
         if (!isSimulated()) {
-            ImageUtil.loadInto(baseLayout, ThemeEngine.getInstance().getTheme().getBackground(activity));
+            // ImageUtil.loadInto(baseLayout, ThemeEngine.getInstance().getTheme().getBackground(activity));
             launchProgress.setVisibility(View.VISIBLE);
             touchPad.post(() -> gameItemBar.setup(this));
         }
