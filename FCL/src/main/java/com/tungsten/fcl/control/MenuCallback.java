@@ -10,9 +10,11 @@ import com.tungsten.fclauncher.bridge.FCLBridgeCallback;
 import com.tungsten.fcllibrary.component.FCLActivity;
 import com.tungsten.fcllibrary.component.view.FCLImageView;
 
+import android.app.Activity;
+
 public interface MenuCallback {
 
-    void setup(FCLActivity activity, FCLBridge fclBridge);
+    void setup(Activity activity, FCLBridge fclBridge);
 
     View getLayout();
 
