@@ -35,15 +35,22 @@ import org.lwjgl.glfw.CallbackBridge;
 import java.util.Objects;
 import java.util.logging.Level;
 
-public class JVMActivity extends FCLActivity implements TextureView.SurfaceTextureListener {
+import android.view.Gravity;
+import android.view.SurfaceHolder;
+import android.widget.PopupWindow;
+import com.tungsten.fcl.util.AndroidUtils;
+import com.tungsten.fcllibrary.component.FCLNativeActivity;
 
-    private TextureView textureView;
+public class JVMActivity extends FCLNativeActivity {
+
+    //private TextureView textureView;
+    private PopupWindow popupWindow;
 
     private MenuCallback menu;
     private static MenuType menuType;
     private static FCLBridge fclBridge;
-    private boolean isTranslated = false;
-    private static boolean isRunning = false;
+    /*private boolean isTranslated = false;
+    private static boolean isRunning = false;*/
     private long volumeDownTime = 0;
 
     public static void setFCLBridge(FCLBridge fclBridge, MenuType menuType) {
@@ -54,7 +61,12 @@ public class JVMActivity extends FCLActivity implements TextureView.SurfaceTextu
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jvm);
+        // setContentView(R.layout.activity_jvm);
+        popupWindow = new PopupWindow();
+        popupWindow.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        popupWindow.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        popupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popupWindow.setFocusable(true);
 
         if (menuType == null || fclBridge == null) {
             Logging.LOG.log(Level.WARNING, "Failed to get ControllerType or FCLBridge, task canceled.");
@@ -63,12 +75,13 @@ public class JVMActivity extends FCLActivity implements TextureView.SurfaceTextu
 
         menu = menuType == MenuType.GAME ? new GameMenu() : new JarExecutorMenu();
         menu.setup(this, fclBridge);
-        textureView = findViewById(R.id.texture_view);
+        /*textureView = findViewById(R.id.texture_view);
         textureView.setSurfaceTextureListener(this);
 
-        addContentView(menu.getLayout(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        addContentView(menu.getLayout(), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));*/
+        popupWindow.setContentView(menu.getLayout());
+        
+        /*getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(() -> {
             if (menuType == MenuType.GAME && ((GameMenu) menu).getMenuSetting().isDisableSoftKeyAdjust()) {
                 return;
@@ -83,10 +96,19 @@ public class JVMActivity extends FCLActivity implements TextureView.SurfaceTextu
                 isTranslated = false;
                 textureView.setTranslationY(0);
             }
-        });
+        });*/
     }
 
     @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        super.surfaceCreated(holder);
+        menu.onGraphicOutput();
+        menu.getInput().initExternalController(menu.getLayout());
+        fclBridge.execute(holder.getSurface(), menu.getCallbackBridge());
+        fclBridge.pushEventWindow(AndroidUtils.getScreenWidth(this), AndroidUtils.getScreenHeight(this));
+    }
+
+    /*@Override
     public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surfaceTexture, int i, int i1) {
         if (isRunning) {
             fclBridge.setSurfaceTexture(surfaceTexture);
@@ -142,7 +164,7 @@ public class JVMActivity extends FCLActivity implements TextureView.SurfaceTextu
         if (output < 1) {
             output++;
         }
-    }
+    }*/
 
     @Override
     protected void onPause() {
@@ -226,16 +248,24 @@ public class JVMActivity extends FCLActivity implements TextureView.SurfaceTextu
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if (textureView != null && textureView.getSurfaceTexture() != null) {
+        /*if (textureView != null && textureView.getSurfaceTexture() != null) {
             textureView.post(() -> onSurfaceTextureSizeChanged(textureView.getSurfaceTexture(), textureView.getWidth(), textureView.getHeight()));
-        }
+        }*/
     }
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (textureView != null && textureView.getSurfaceTexture() != null) {
+        /*if (textureView != null && textureView.getSurfaceTexture() != null) {
             textureView.post(() -> onSurfaceTextureSizeChanged(textureView.getSurfaceTexture(), textureView.getWidth(), textureView.getHeight()));
+        }*/
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            popupWindow.showAtLocation(this.getWindow().getDecorView(), Gravity.TOP | Gravity.START,0,0);
         }
     }
 }
