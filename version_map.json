@@ -1,20 +1,20 @@
 [
   {
     "type": "release",
-    "versionCode": 1242,
-    "versionName": "1.2.4.2",
-    "date": "2025.07.24",
+    "versionCode": 1249,
+    "versionName": "1.2.4.9",
+    "date": "2025.08.28",
     "description": [
       {
         "lang": "en",
-        "text": "(Translated from Chinese by AI)\n1. Fix the issue where clicking launch without downloaded games causes an immediate crash \n2. New feature: Added a refresh button in the renderer selection dialog  \n3. Fix GLFW missing glfwRestoreWindow in Pojav backend causing certain mods to malfunction on some devices  \n4. Resolve text-background color indistinguishability in built-in file picker caused by mobile themes  \n5. Add Traditional Chinese (Hong Kong) language support"
+        "text": "(Translated from Chinese by AI)\n1. Update the Krypton Wrapper renderer  \n2. Fix a crash that may occur due to uninitialized renderer  \n3. Resolve the issue of being unable to download all required files for NeoForge from BMCLAPI  \n4. Fix the launcher crash when importing data packs with abnormal formats  \n5. Add an April Fools' Day version download category"
       },
       {
         "lang": "zh_CN",
-        "text": "（若启动器内下载缓慢请使用网盘下载,64位的请下载arm64，不知道该下哪个的请下载all）\n1.修复未下载游戏时点击启动直接崩溃的问题\n2.新增功能：在选择渲染器的对话框内添加刷新按键\n3.修复Pojav后端的GLFW缺少glfwRestoreWindow导致部分设备部分模组无法运行的问题\n4.修复手机主题可能导致的内置文件选择器文字颜色与背景色无法区分的问题\n5.增加繁体中文（香港）"
+        "text": "（若启动器内下载缓慢请使用网盘下载,64位的请下载arm64，不知道该下哪个的请下载all）\n1.更新 Krypton Wrapper 渲染器\n2.修复渲染器未初始化可能造成的闪退\n3.修复无法从 BMCLAPI 下载 NeoForge 所有所需文件的问题\n4.修复导入异常格式的数据包时启动器崩溃的问题\n5.添加愚人节版本下载分类"
       }
     ],
-    "netdiskUrl": "https://pan.quark.cn/s/968458583f99",
-    "url": "https://github.com/FCL-Team/FoldCraftLauncher/releases/download/1.2.4.2/FCL-release-1.2.4.2-all.apk"
+    "netdiskUrl": "https://pan.quark.cn/s/fe67f0173fe5",
+    "url": "https://github.com/FCL-Team/FoldCraftLauncher/releases/download/1.2.4.9/FCL-release-1.2.4.9-all.apk"
   }
 ]

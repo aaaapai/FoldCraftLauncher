@@ -19,7 +19,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.edit
@@ -50,10 +49,8 @@ import com.tungsten.fcl.upgrade.UpdateChecker
 import com.tungsten.fcl.util.AndroidUtils
 import com.tungsten.fcl.util.FXUtils
 import com.tungsten.fcl.util.WeakListenerHolder
-import com.tungsten.fclauncher.FCLConfig
 import com.tungsten.fclauncher.bridge.FCLBridge
 import com.tungsten.fclauncher.plugins.DriverPlugin
-import com.tungsten.fclauncher.plugins.RendererPlugin
 import com.tungsten.fclauncher.utils.FCLPath
 import com.tungsten.fclcore.auth.Account
 import com.tungsten.fclcore.auth.authlibinjector.AuthlibInjectorAccount
@@ -148,6 +145,8 @@ class MainActivity : FCLActivity(), OnSelectListener, View.OnClickListener {
         if (!ConfigHolder.isInit()) {
             try {
                 ConfigHolder.init()
+                //当强制关闭进程时，不会经过SplashActivity，此时需要重新初始化
+                RendererManager.init(this@MainActivity)
             } catch (e: IOException) {
                 LOG.log(Level.WARNING, e.message)
             }
