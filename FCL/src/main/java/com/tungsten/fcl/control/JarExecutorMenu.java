@@ -30,9 +30,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
+import android.app.Activity;
+
 public class JarExecutorMenu implements MenuCallback, View.OnClickListener, View.OnTouchListener {
 
-    private FCLActivity activity;
+    private Activity activity;
     private FCLBridge fclBridge;
     private AWTInput awtInput;
 
@@ -62,7 +64,7 @@ public class JarExecutorMenu implements MenuCallback, View.OnClickListener, View
     private int initialY;
 
     @Override
-    public void setup(FCLActivity activity, FCLBridge fclBridge) {
+    public void setup(Activity activity, FCLBridge fclBridge) {
         this.activity = activity;
         this.fclBridge = fclBridge;
 
